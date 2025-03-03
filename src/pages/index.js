@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Geist, Geist_Mono } from "next/font/google";
+import { motion } from "framer-motion";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -56,41 +57,117 @@ function SignupIcon() {
 export default function Home() {
   return (
     <div
-      className={`${geistSans.variable} ${geistMono.variable} min-h-screen bg-gradient-to-r from-blue-50 to-gray-100 flex flex-col items-center justify-center p-6`}
+      className={`
+        ${geistSans.variable} 
+        ${geistMono.variable} 
+        relative 
+        min-h-screen 
+        flex 
+        flex-col 
+        items-center 
+        justify-center 
+        text-gray-200
+        bg-gradient-to-b 
+        from-black 
+        to-[#0A0F1C]
+      `}
     >
+      {/* Dark wave background */}
+      <div className="absolute inset-0 -z-10 overflow-hidden">
+        <svg
+          className="absolute bottom-0 w-full h-auto"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 1440 320"
+        >
+          <path
+            fill="#0B1120"
+            fillOpacity="1"
+            d="M0,64L60,80C120,96,240,128,360,138.7C480,149,600,139,720,138.7C840,139,960,149,1080,138.7C1200,128,1320,96,1380,80L1440,64L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"
+          />
+        </svg>
+      </div>
+
       {/* Header Section */}
-      <header className="mb-12 text-center">
+      <header className="mb-12 text-center z-10">
         <Logo />
-        <h1 className="text-4xl font-bold mt-4 text-gray-800">
+        <h1 className="text-4xl md:text-5xl font-bold mt-4 text-blue-500">
           Management Platform
         </h1>
-        <p className="mt-2 text-lg text-gray-600">
+        <p className="mt-2 text-lg text-gray-400 max-w-md mx-auto">
           Streamline your operations. Empower your team.
         </p>
       </header>
 
       {/* Navigation Buttons */}
-      <main className="flex flex-col items-center gap-6">
-        <div className="flex gap-4">
-          <Link
-            href="/login"
-            className="flex items-center gap-2 px-6 py-3 rounded-full bg-blue-600 text-white text-lg hover:bg-blue-700 transition"
+      <main className="flex flex-col items-center gap-6 z-10">
+        <div className="flex flex-wrap gap-4">
+          <motion.div
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.5 }}
           >
-            <LoginIcon />
-            Login
-          </Link>
-          <Link
-            href="/signup"
-            className="flex items-center gap-2 px-6 py-3 rounded-full border border-blue-600 text-blue-600 text-lg hover:bg-blue-600 hover:text-white transition"
+            <Link
+              href="/login"
+              className="
+                flex 
+                items-center 
+                gap-2 
+                px-6 
+                py-3 
+                rounded-full 
+                bg-blue-600 
+                text-white 
+                text-lg 
+                font-medium
+                shadow-md
+                hover:shadow-blue-700/50
+                hover:bg-blue-700 
+                transition 
+                focus:ring-4 
+                focus:ring-blue-300
+              "
+            >
+              <LoginIcon />
+              Login
+            </Link>
+          </motion.div>
+          <motion.div
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
           >
-            <SignupIcon />
-            Sign Up
-          </Link>
+            <Link
+              href="/signup"
+              className="
+                flex 
+                items-center 
+                gap-2 
+                px-6 
+                py-3 
+                rounded-full 
+                border 
+                border-blue-600 
+                text-blue-600 
+                text-lg 
+                font-medium
+                shadow-md
+                hover:bg-blue-600 
+                hover:text-white 
+                hover:shadow-blue-700/50
+                transition 
+                focus:ring-4 
+                focus:ring-blue-300
+              "
+            >
+              <SignupIcon />
+              Sign Up
+            </Link>
+          </motion.div>
         </div>
       </main>
 
       {/* Footer */}
-      <footer className="absolute bottom-4 text-sm text-gray-500">
+      <footer className="absolute bottom-4 text-sm text-gray-500 z-10">
         © {new Date().getFullYear()} Management Platform. All rights reserved.
       </footer>
     </div>
