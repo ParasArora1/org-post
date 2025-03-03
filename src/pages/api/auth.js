@@ -25,7 +25,29 @@
 // }
 
 // pages/api/auth.js
-export default async function handler(req, res) {
-  return res.status(200).json({ success: true, query: req.query, method: req.method });
+// pages/api/auth.js
+
+export default function handler(req, res) {
+  if (req.method === 'POST') {
+    // Log out what you receive in the body
+    console.log('POST body:', req.body);
+
+    // Send back a JSON response
+    return res.status(200).json({
+      success: true,
+      message: 'POST request successful!',
+      method: req.method,
+      query: req.query,
+      body: req.body,
+    });
+  }
+
+  // For GET or other methods, just send back something basic
+  return res.status(200).json({
+    success: true,
+    message: 'This is a GET (or other) request.',
+    method: req.method,
+    query: req.query,
+  });
 }
 
